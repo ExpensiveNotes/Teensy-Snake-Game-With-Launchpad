@@ -53,9 +53,6 @@ byte stopMIDI = 0xfc; //MIDI stop
 
 
 USBHost myusb;
-//USBHub hub1(myusb);
-//USBHub hub2(myusb);
-//USBHub hub3(myusb);
 MIDIDevice midi1(myusb);
 
 void setup()
@@ -141,13 +138,7 @@ void  moveSnake() {
       snakeX[i] = snakeX[i - 1];
       snakeY[i] = snakeY[i - 1];
     }
-    //  Serial.print(snakeX[i]);
-    //Serial.print(" , ");
-
   }
-  //Serial.print(snakeX[0]);
-  //  Serial.println();
-  // Serial.println(score);
 
   snakeX[0] = snakeX[0] + moveX;
   if (snakeX[0] < 1) snakeX[0] = 8;
@@ -164,26 +155,6 @@ void  drawSnake() {
     }
   }
 }
-
-//void eraseSnake() {
-//  for (int i = 0; i < 10; i++) {
-//    if (snakeX[i] != -1) {
-//      midi1.sendNoteOn(gridToMIDINote(snakeX[i], snakeY[i]) , 42, 1, 1);
-//    }
-//  }
-//}
-
-//void lightHitNote() {
-//  midi1.sendNoteOn(noteIndex, GREEN, 1, 1);
-//}
-//
-//void sendToDisplay() {
-//  //works on user setting on Launchpad
-//  //void sendNoteOn(uint8_t note, uint8_t velocity, uint8_t channel, uint8_t cable=0)
-//  midi1.sendNoteOn(note, note, 1, 1);
-//  note++;
-//  if (note > 99) note = 11;
-//}
 
 int noteIndexToX(int noteIndex) {
   //translate MIDI note to x position
@@ -223,14 +194,6 @@ void OnNoteOff(byte channel, byte note, byte velocity)
 
 void OnControlChange(byte channel, byte control, byte value)
 {
-  //Black Buttons
-  //  Serial.print("Control Change, ch=");
-  //  Serial.print(channel);
-  //  Serial.print(", control=");
-  //  Serial.print(control);
-  //  Serial.print(", value=");
-  //  Serial.print(value);
-  //  Serial.println();
 
   //Launchpad upside down so arrow keys are accessable
   if (control == 91) {
@@ -296,7 +259,7 @@ void OnControlChange(byte channel, byte control, byte value)
 
 }
 
-//Serial out 1 channel 1
+//Serial out 1 
 void playMIDInote1(int command, int Note, int Velocity) {
   //sending to the tx pin on Serial 1
   Serial1.write(command);//send note on or note off command
