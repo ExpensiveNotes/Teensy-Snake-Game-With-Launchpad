@@ -51,7 +51,6 @@ byte midi_clock = 0xf8;
 //byte startMIDI = 0xfa;
 byte stopMIDI = 0xfc; //MIDI stop
 
-
 USBHost myusb;
 MIDIDevice midi1(myusb);
 
@@ -170,6 +169,7 @@ int gridToMIDINote(int x, int y) {
   return (y * 10 + x);
 }
 
+//This function isn't necessary for the game. I just left it there ;-)
 void OnNoteOn(byte channel, byte note, byte velocity)
 {
   //which pad hit
@@ -194,7 +194,6 @@ void OnNoteOff(byte channel, byte note, byte velocity)
 
 void OnControlChange(byte channel, byte control, byte value)
 {
-
   //Launchpad upside down so arrow keys are accessable
   if (control == 91) {
     //Serial.println("down");
@@ -256,7 +255,6 @@ void OnControlChange(byte channel, byte control, byte value)
       snakeY[i] = 4;
     }
   }
-
 }
 
 //Serial out 1 
